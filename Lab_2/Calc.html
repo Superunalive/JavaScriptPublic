@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Калькулятор</title>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<link rel="stylesheet" href="Calc.css">
+<body style="background-color:#ecedee; display: flex; justify-content: center; align-items: center;">
+
+	
+  <div>
+    
+    <div id="result" class="result">
+      0
+    </div>
+
+    <!-- блок с кнопками калькулятора. -->
+    <div>
+	
+      <!--горизонтальный ряд из четырех кнопок-->
+      <div>  
+        <button id="btn_op_clear" class="my-btn secondary">C</button>
+        <button id="btn_op_sign" class="my-btn secondary">+/-</button>
+        <button id="btn_op_percent" class="my-btn secondary">%</button>
+        <button id="btn_op_div" class="my-btn secondary">/</button>
+      </div>
+
+      <div>
+        <button id="btn_digit_7" class="my-btn">7</button>
+        <button id="btn_digit_8" class="my-btn">8</button>
+        <button id="btn_digit_9" class="my-btn">9</button>
+        <button id="btn_op_mult" class="my-btn primary">x</button>
+      </div>
+
+      <div>
+        <button id="btn_digit_4" class="my-btn">4</button>
+        <button id="btn_digit_5" class="my-btn">5</button>
+        <button id="btn_digit_6" class="my-btn">6</button>
+        <button id="btn_op_minus" class="my-btn primary">-</button>
+      </div>
+
+      <div>
+        <button id="btn_digit_1" class="my-btn">1</button>
+        <button id="btn_digit_2" class="my-btn">2</button>
+        <button id="btn_digit_3" class="my-btn">3</button>
+        <button id="btn_op_plus" class="my-btn primary">+</button>
+      </div>
+
+      <div style="color: #2d4156">
+        <button id="btn_digit_0" class="my-btn">0</button>
+        <button id="btn_digit_dot" class="my-btn primary">.</button>
+        <button id="btn_op_equal" class="my-btn primary execute">=</button>
+	<details>
+  		<summary>Автор:</summary>
+  		<p>Шадрин Михаил Константинович ИУ5-45Б</p>
+    	</details>
+      </div>
+    </div>
+  
+  <div style="color: #2d4156">
+      ЛР выполнена Шадрином Михаилом Константиновичом
+  </div>
+  <div id="Target" class="result small">
+    <i>Список ниже позволяет выбрать список кнопок. В зависимости от выбора меняются функции операций <mark>умножения</mark> (возведения в квадрат), <mark>очистки</mark> (удаление последней цифры) и <mark>вычисления процента</mark> (нахождение количества метана)</i>
+  </div>
+  <div>
+    <button id="repository" class="my-btn" onclick="location.href = 'https://github.com/Superunalive/JavaScriptPublic'">Git</button>
+    <select id="list" border-radius: 20%;"></button>
+	<option value="1";>Основные функции</option>
+	<option value="2";>Дополнительные функции</option>
+  </div>
+  </div>
+</body>
+</html>

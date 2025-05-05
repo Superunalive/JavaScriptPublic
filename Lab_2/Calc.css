@@ -1,0 +1,63 @@
+
+mark{
+  background-color: #b3bfc5;
+}
+.my-btn {
+  margin-right: 10px;
+  margin-top: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10%;
+  border: 1px solid #f1f3f5;
+  color: #2d4156;
+  font-size: 2rem;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  cursor: pointer;
+  user-select: none;
+} 
+
+.my-btn.secondary {
+  font-size: 1.5rem; 
+  background: #eaeff2;
+}
+
+.my-btn.primary:hover {
+  background: #1d2e38;
+}
+
+.my-btn.secondary:hover {
+  background: #d8e0e6;
+}
+
+.my-btn:active {
+  filter: brightness(130%);
+}
+
+.my-btn.primary {
+  font-size: 1.5rem;
+  color: white; 
+  background: #3f3a60;
+}
+
+.my-btn.execute {
+  font-size: 1.5rem; 
+  width: 110px;
+}
+
+.result { 
+  width: 270px;
+  height: 100px;
+  padding-right: 10px;
+  background: white;
+  border-radius: 34px;
+  text-align: right;
+  color: #2d4156;
+  font-size: 3.5rem;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+}
+
+.small {
+  font-size: small;
+  width: 350px;
+  height: 120px;
+}
