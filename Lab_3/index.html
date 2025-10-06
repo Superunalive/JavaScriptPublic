@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Simple App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приют для кошек "Мурлыка"</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        .card {
+            transition: transform 0.2s;
+            margin: 10px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 <body>
-<button type="button" class="btn btn-primary">Hello world!</button>
-
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <div class="header">
+            <h1>🐱 Приют для кошек "Мурлыка"</h1>
+            <p>Найди своего пушистого друга</p>
+        </div>
+        <div id="root"></div>
+    </div>
+    
+    <script src="main.js" type="module"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

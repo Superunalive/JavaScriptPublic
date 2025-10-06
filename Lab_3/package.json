@@ -7,7 +7,7 @@
   },
   "author": "Shadrin",
   "license": "ISC",
-  "description": "",
+  "description": "Some cat app",
   "dependencies": {
     "bootstrap": "^5.3.8"
   }
