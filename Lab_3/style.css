@@ -1,4 +1,4 @@
-/* styles.css - BGG Style */
+/* style.css - BGG Style */
 :root {
     --bgg-purple: #3f3a60;
     --bgg-purple-dark: #2e2b47;
@@ -16,7 +16,6 @@ body {
     color: var(--bgg-text);
 }
 
-/* Заголовок */
 .header {
     background-color: var(--bgg-purple);
     color: white;
@@ -39,7 +38,6 @@ body {
     opacity: 0.95;
 }
 
-/* Карточки - возвращаем к 3 в ряд */
 .card {
     background-color: var(--bgg-card-bg);
     border: 1px solid var(--bgg-border);
@@ -79,7 +77,6 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* Кнопки - увеличены */
 .btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
@@ -145,7 +142,6 @@ body {
     color: white;
 }
 
-/* Alerts */
 .alert {
     border-radius: 4px;
     padding: 0.75rem 1rem;
@@ -177,7 +173,6 @@ body {
     color: #0c5460;
 }
 
-/* Toolbar */
 .toolbar {
     background-color: var(--bgg-card-bg);
     border: 1px solid var(--bgg-border);
@@ -195,7 +190,6 @@ body {
     font-weight: 600;
 }
 
-/* Действия с кошками */
 .cat-actions {
     margin-top: 10px;
 }
@@ -205,13 +199,11 @@ body {
     margin-bottom: 5px;
 }
 
-/* Контейнер */
 .container {
     max-width: 1200px;
     padding: 20px;
 }
 
-/* Row для правильного расположения карточек */
 .row {
     margin-left: -10px;
     margin-right: -10px;

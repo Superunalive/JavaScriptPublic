@@ -1,6 +1,8 @@
-// Данные о кошках и некоторые функции управления массивом
+// data/catsData.js
 
-let catsDatabase = [
+const STORAGE_KEY = 'catShelterData';
+
+const catsDB = [
     {
         id: 1,
         name: "Мурка",
@@ -87,65 +89,147 @@ let catsDatabase = [
     }
 ];
 
-let nextId = 7;
+const MIN_CATS = 1;
+const MAX_CATS = 20;
 
-// Получить массив кошек полностью
+function loadFromStorage() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            return {
+                cats: parsed.cats || [...catsDB],
+                nextId: parsed.nextId || 7
+            };
+        }
+    } catch (error) {
+        console.error('Ошибка загрузки данных:', error);
+    }
+    return {
+        cats: [...catsDB],
+        nextId: 7
+    };
+}
+
+function saveToStorage() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            cats: catsDatabase,
+            nextId: nextId
+        }));
+    } catch (error) {
+        console.error('Ошибка сохранения данных:', error);
+    }
+}
+
+let catsDatabase;
+let nextId;
+
+const loaded = loadFromStorage();
+catsDatabase = loaded.cats;
+nextId = loaded.nextId;
+
 export function getAllCats() {
     return [...catsDatabase];
 }
 
-// Получить кошку по ID
 export function getCatById(id) {
-    return catsDatabase.find(cat => cat.id === parseInt(id));
+    try {
+        return catsDatabase.find(cat => cat.id === parseInt(id));
+    } catch (error) {
+        console.error('Ошибка получения кошки:', error);
+        return undefined;
+    }
 }
 
-// Добавить новую кошку
 export function addCat(catData = null) {
-    const newCat = catData || {
-        id: nextId++,
-        name: "Новая кошка",
-        age: "1 год",
-        src: "images/placeholder.jpeg",
-        description: "Описание не заполнено",
-        status: "available",
-        statusText: "Доступна для усыновления",
-        character: "Характер не указан",
-        health: "Информация о здоровье отсутствует",
-        color: "Не указан",
-        weight: "Не указан",
-        story: "История не заполнена"
-    };
-    
-    if (catData) {
-        newCat.id = nextId++;
+    try {
+        if (catsDatabase.length >= MAX_CATS) {
+            return null;
+        }
+        
+        const newCat = catData || {
+            id: nextId++,
+            name: "Новая кошка",
+            age: "1 год",
+            src: "images/placeholder.jpeg",
+            description: "Описание не заполнено",
+            status: "available",
+            statusText: "Доступна для усыновления",
+            character: "Характер не указан",
+            health: "Информация о здоровье отсутствует",
+            color: "Не указан",
+            weight: "Не указан",
+            story: "История не заполнена"
+        };
+        
+        if (catData) {
+            newCat.id = nextId++;
+        }
+        
+        catsDatabase.push(newCat);
+        saveToStorage();
+        return newCat;
+    } catch (error) {
+        console.error('Ошибка добавления кошки:', error);
+        return null;
     }
-    
-    catsDatabase.push(newCat);
-    return newCat;
 }
 
-// Удалить кошку
 export function deleteCat(id) {
-    const index = catsDatabase.findIndex(cat => cat.id === parseInt(id));
-    if (index !== -1) {
-        catsDatabase.splice(index, 1);
-        return true;
+    try {
+        if (catsDatabase.length <= MIN_CATS) {
+            return false;
+        }
+        
+        const index = catsDatabase.findIndex(cat => cat.id === parseInt(id));
+        if (index !== -1) {
+            catsDatabase.splice(index, 1);
+            saveToStorage();
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error('Ошибка удаления кошки:', error);
+        return false;
     }
-    return false;
 }
 
-// Обновить данные о кошке
 export function updateCat(id, updatedData) {
-    const index = catsDatabase.findIndex(cat => cat.id === parseInt(id));
-    if (index !== -1) {
-        catsDatabase[index] = { ...catsDatabase[index], ...updatedData };
-        return catsDatabase[index];
+    try {
+        const index = catsDatabase.findIndex(cat => cat.id === parseInt(id));
+        if (index !== -1) {
+            catsDatabase[index] = { ...catsDatabase[index], ...updatedData };
+            saveToStorage();
+            return catsDatabase[index];
+        }
+        return null;
+    } catch (error) {
+        console.error('Ошибка обновления кошки:', error);
+        return null;
     }
-    return null;
 }
 
-// Сброс к начальным данным (для перезапуска)
+export function getCatsCount() {
+    return catsDatabase.length;
+}
+
+export function canAddCat() {
+    return catsDatabase.length < MAX_CATS;
+}
+
+export function canDeleteCat() {
+    return catsDatabase.length > MIN_CATS;
+}
+
 export function resetDatabase() {
-    // Можно добавить логику сброса, если нужно
-    nextId = 7;
+    try {
+        catsDatabase = [...catsDB];
+        nextId = 7;
+        saveToStorage();
+        return true;
+    } catch (error) {
+        console.error('Ошибка сброса базы данных:', error);
+        return false;
+    }
 }

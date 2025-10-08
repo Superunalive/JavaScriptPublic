@@ -1,3 +1,5 @@
+// components/back-button/index.js
+
 export class BackButtonComponent {
     constructor(parent) {
         this.parent = parent;

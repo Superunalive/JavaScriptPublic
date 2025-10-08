@@ -1,3 +1,5 @@
+// components/cat-card/index.js
+
 import { AlertComponent } from "../alert/index.js";
 
 export class CatCardComponent {
@@ -9,7 +11,12 @@ export class CatCardComponent {
         return `
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
-                    <img src="${data.src}" class="card-img-top" alt="${data.name}">
+                    <img 
+                        src="${data.src}" 
+                        class="card-img-top" 
+                        alt="${data.name}"
+                        onerror="this.src='images/placeholder.jpeg'"
+                    >
                     <div class="card-body">
                         <h5 class="card-title">🐱 ${data.name}</h5>
                         <p class="card-text"><strong>Возраст:</strong> ${data.age}</p>
