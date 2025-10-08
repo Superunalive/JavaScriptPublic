@@ -1,0 +1,91 @@
+/* styles.css */
+body {
+    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    background: linear-gradient(135deg, #3d5a80 0%, #293241 100%);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+    border-bottom: 4px solid #ee6c4d;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.card {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    background: white;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(61, 90, 128, 0.2);
+    transform: translateY(-2px);
+    border-color: #3d5a80;
+}
+
+.card-title {
+    color: #293241;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #3d5a80;
+    border-color: #3d5a80;
+}
+
+.btn-primary:hover {
+    background-color: #293241;
+    border-color: #293241;
+}
+
+.btn-secondary {
+    background-color: #98c1d9;
+    border-color: #98c1d9;
+    color: #293241;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+.alert-secondary {
+    background-color: #e2e3e5;
+    border-color: #d6d8db;
+    color: #383d41;
+}
+
+.utils-panel {
+    background: white;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.utils-panel h4 {
+    color: #3d5a80;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.utils-button {
+    margin: 5px;
+}
