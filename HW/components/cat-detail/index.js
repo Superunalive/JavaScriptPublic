@@ -1,3 +1,5 @@
+// components/cat-detail/index.js
+
 import { AlertComponent } from "../alert/index.js";
 
 export class CatDetailComponent {
@@ -10,7 +12,13 @@ export class CatDetailComponent {
             <div class="card mb-4">
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <img src="${data.src}" class="img-fluid rounded-start" alt="${data.name}" style="height: 100%; object-fit: cover;">
+                        <img 
+                            src="${data.src}" 
+                            class="img-fluid rounded-start" 
+                            alt="${data.name}" 
+                            style="height: 100%; object-fit: cover;"
+                            onerror="this.src='images/placeholder.jpeg'"
+                        >
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">

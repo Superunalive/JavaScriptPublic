@@ -1,3 +1,5 @@
+// components/alert/index.js
+
 export class AlertComponent {
     constructor(parent) {
         this.parent = parent;
