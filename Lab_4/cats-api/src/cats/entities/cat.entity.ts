@@ -9,5 +9,5 @@ export class Cat {
   image: string;
   color: string;
   weight: number;
-  description: string;
+  description: string[];
 }

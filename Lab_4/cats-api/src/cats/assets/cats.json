@@ -7,7 +7,11 @@
     "image": "images/cat1.jpeg",
     "color": "black",
     "weight": 4.2,
-    "description": "Дружелюбный и игривый кот."
+    "description": "Дружелюбный и игривый кот.",
+    "statusText": "Доступна для усыновления",
+    "character": "Очень игривая...",
+    "health": "Здорова...",
+    "story": "История..."
   },
   {
     "id": 2,
@@ -17,7 +21,11 @@
     "image": "images/cat2.jpeg",
     "color": "ginger",
     "weight": 3.8,
-    "description": "Ласковая кошка, любит внимание."
+    "description": "Ласковая кошка, любит внимание.",
+    "statusText": "Доступна для усыновления",
+    "character": "Очень игривая...",
+    "health": "Здорова...",
+    "story": "История..."
   },
   {
     "id": 3,
@@ -27,6 +35,10 @@
     "image": "images/cat3.jpeg",
     "color": "white",
     "weight": 3.0,
-    "description": "На лечении, нужен спокойный уход."
+    "description": "Милый игривый котёнок",
+    "statusText": "Доступна для усыновления",
+    "character": "Очень игривая...",
+    "health": "Здорова...",
+    "story": "История..."
   }
 ]

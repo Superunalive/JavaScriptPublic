@@ -8,5 +8,10 @@ export class CreateCatDto {
   image: string;
   color: string;
   weight: number;
-  description: string;
+  
+  description?: string | string[];
+  statusText?: string;
+  character?: string;
+  health?: string;
+  story?: string;
 }
