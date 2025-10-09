@@ -1,13 +1,13 @@
 // utils/catUtils.js
 
 /**
- * Сравнивает кошек по важным характеристикам:
- * возраст, характер, статус здоровья
- * (не сравнивает имя, id, фото)
+ * 1. Сравнивает двух кошек по важным характеристикам
+ * (возраст, характер, статус - игнорирует id, имя, фото)
  */
 export function isEqualObj(cat1, cat2) {
-    const importantFields = ['age', 'character', 'health', 'status'];
+    const importantFields = ['age', 'character', 'status', 'color'];
     
+    // Цикл с повторениями (for...of)
     for (let field of importantFields) {
         if (cat1[field] !== cat2[field]) {
             return false;
@@ -17,11 +17,11 @@ export function isEqualObj(cat1, cat2) {
 }
 
 /**
- * Преобразует возраст в месяцы для унификации
+ * 2. Преобразует возраст в месяцы
  */
 function parseAgeToMonths(ageString) {
     const yearMatch = ageString.match(/(\d+)\s*(год|года|лет)/);
-    const monthMatch = ageString.match(/(\d+)\s*месяц/);
+    const monthMatch = ageString.match(/(\d+)\s*(месяц|месяца|месяцов)/);
     
     let months = 0;
     if (yearMatch) {
@@ -31,18 +31,18 @@ function parseAgeToMonths(ageString) {
         months += parseInt(monthMatch[1]);
     }
     
-    return months;
+    return months || 12; // По умолчанию 1 год если не распознано
 }
 
 /**
- * Возвращает сумму квадратов возрастов кошек (в месяцах)
+ * 3. Сумма квадратов возрастов кошек (в месяцах)
  * Используется для статистики приюта
  */
 export function sumOfSquares(cats) {
     let sum = 0;
     let index = 0;
     
-    // Цикл while с постусловием
+    // Цикл с постусловием (while)
     while (index < cats.length) {
         const ageInMonths = parseAgeToMonths(cats[index].age);
         sum += ageInMonths * ageInMonths;
@@ -53,19 +53,15 @@ export function sumOfSquares(cats) {
 }
 
 /**
- * Универсальное сравнение значений
+ * 4. Универсальное сравнение любых значений
  */
 export function isEqual(value1, value2) {
-    if (typeof value1 !== typeof value2) return false;
-    
-    if (value1 === null || value2 === null) {
+    // Строки
+    if (typeof value1 === 'string' && typeof value2 === 'string') {
         return value1 === value2;
     }
     
-    if (typeof value1 === 'string' || typeof value1 === 'number' || typeof value1 === 'boolean') {
-        return value1 === value2;
-    }
-    
+    // Массивы
     if (Array.isArray(value1) && Array.isArray(value2)) {
         if (value1.length !== value2.length) return false;
         
@@ -75,22 +71,23 @@ export function isEqual(value1, value2) {
         return true;
     }
     
-    if (typeof value1 === 'object' && typeof value2 === 'object') {
+    // Объекты (используем isEqualObj)
+    if (typeof value1 === 'object' && typeof value2 === 'object' && value1 !== null && value2 !== null) {
         return isEqualObj(value1, value2);
     }
     
-    return false;
+    return value1 === value2;
 }
 
 /**
- * Группирует кошек по анаграммам имен
- * Например: "Мурка" и "Крума" - анаграммы
+ * 5. Группировка имен кошек по анаграммам
+ * Возвращает только группы из 2+ имен
  */
 export function anagram(names) {
     // Map - коллекция ключ-значение
     const groups = new Map();
     
-    // Set используется для проверки уникальности
+    // Set - для уникальности
     const processed = new Set();
     
     for (let name of names) {
@@ -107,7 +104,7 @@ export function anagram(names) {
         }
     }
     
-    // Возвращаем только группы из 2+ слов, отсортированные
+    // Только группы из 2+ имен, отсортированные
     const result = [];
     for (let group of groups.values()) {
         if (group.length >= 2) {
@@ -119,7 +116,7 @@ export function anagram(names) {
 }
 
 /**
- * Находит похожих кошек (по характеристикам)
+ * 6. Найти похожих кошек (используя isEqualObj)
  */
 export function findSimilarCats(targetCat, allCats) {
     const similar = [];

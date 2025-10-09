@@ -3,6 +3,7 @@
 import { CatCardComponent } from "../../components/cat-card/index.js";
 import { CatPage } from "../cat/index.js";
 import { NotificationComponent } from "../../components/notification/index.js";
+import { sumOfSquares } from "../../utils/catUtils.js";
 import { getAllCats, addCat, deleteCat, canAddCat, canDeleteCat, getCatsCount, resetDatabase } from "../../data/catsData.js";
 
 export class MainPage {
@@ -20,35 +21,42 @@ export class MainPage {
     }
 
     getHTML() {
-        const catsCount = getCatsCount();
-        const canAdd = canAddCat();
-        
-        return `
-            <div id="toolbar" class="toolbar">
-                <div>
-                    <h5>Управление приютом</h5>
-                    <small class="text-muted">Кошек в приюте: ${catsCount}</small>
-                </div>
-                <div>
-                    <button 
-                        class="btn btn-success me-2" 
-                        id="add-cat-btn"
-                        ${!canAdd ? 'disabled' : ''}
-                        title="${!canAdd ? 'Приют заполнен' : 'Добавить новую кошку'}"
-                    >
-                        ➕ Добавить кошку
-                    </button>
-                    <button 
-                        class="btn btn-warning" 
-                        id="reset-btn"
-                        title="Сбросить до начального состояния"
-                    >
-                        🔄 Сбросить
-                    </button>
-                </div>
+    const catsCount = getCatsCount();
+    const canAdd = canAddCat();
+    
+    return `
+        <div id="toolbar" class="toolbar">
+            <div>
+                <h5>Управление приютом</h5>
+                <small class="text-muted">Кошек в приюте: ${catsCount}</small>
             </div>
-            <div id="main-page" class="row"></div>
-        `;
+            <div>
+                <button 
+                    class="btn btn-info me-2" 
+                    id="stats-btn"
+                    title="Показать статистику приюта"
+                >
+                    📊 Статистика
+                </button>
+                <button 
+                    class="btn btn-success me-2" 
+                    id="add-cat-btn"
+                    ${!canAdd ? 'disabled' : ''}
+                    title="${!canAdd ? 'Приют заполнен' : 'Добавить новую кошку'}"
+                >
+                    ➕ Добавить кошку
+                </button>
+                <button 
+                    class="btn btn-warning" 
+                    id="reset-btn"
+                    title="Сбросить до начального состояния"
+                >
+                    🔄 Сбросить
+                </button>
+            </div>
+        </div>
+        <div id="main-page" class="row"></div>
+    `;
     }
 
     clickCard(e) {
@@ -121,7 +129,32 @@ export class MainPage {
         }
     }
 
+    clickStats() {
+    try {
+        const allCats = getAllCats();
+        const sum = sumOfSquares(allCats);
+        const count = allCats.length;
+        const avgAge = Math.sqrt(sum / count).toFixed(1);
+        
+        this.notification.show(
+            `📊 Статистика приюта:<br>` +
+            `Сумма квадратов возрастов: ${sum} мес²<br>` +
+            `Средний возраст (RMS): ${avgAge} месяцев<br>` +
+            `Всего кошек: ${count}`,
+            'info',
+            6000
+        );
+    } catch (error) {
+        console.error('Ошибка при расчёте статистики:', error);
+        this.notification.show('Ошибка при расчёте статистики', 'danger');
+    }
+    }
+
     addListeners() {
+        document.getElementById('stats-btn').addEventListener('click', () => {
+            this.clickStats();
+        });
+
         document.getElementById('add-cat-btn').addEventListener('click', () => {
             this.clickAddCat();
         });
