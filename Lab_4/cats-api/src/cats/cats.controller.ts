@@ -9,10 +9,10 @@ import type { UpdateCatDto } from './dto/update-cat.dto';
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
-  /*@Post()
-  create(@Body() createCatDto: CreateCatDto) {
+  @Post()
+  create(@Body() createCatDto: CreateCatDto): Cat {
     return this.catsService.create(createCatDto);
-  }*/
+  }
 
   @Get()
   findAll(@Query() q: ListFilters): Cat[] {
@@ -24,14 +24,13 @@ export class CatsController {
     return this.catsService.findOne(+id);
   }
 
-  /*
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateCatDto: UpdateCatDto): Cat | null {
     return this.catsService.update(+id, updateCatDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: number): {deleted : boolean} {
     return this.catsService.remove(+id);
-  }*/
+  }
 }

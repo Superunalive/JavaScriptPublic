@@ -2,6 +2,8 @@
 import { Injectable } from '@nestjs/common';
 import { FileService } from '../file.service';
 import type { Cat } from './entities/cat.entity';
+import type { CreateCatDto } from './dto/create-cat.dto';
+import type { UpdateCatDto } from './dto/update-cat.dto';
 
 export type ListFilters = {
   name?: string;
@@ -17,6 +19,10 @@ export class CatsService {
 
   private readAll(): Cat[] {
     return this.fileService.read<Cat[]>();
+  }
+
+  private writeAll(items: Cat[]): void {
+    this.fileService.write<Cat[]>(items);
   }
 
   findAll(filters?: ListFilters): Cat[] {
@@ -44,11 +50,31 @@ export class CatsService {
     return cats.find((c) => c.id === id) ?? null;
   }
 
-  /*update(id: number, updateCatDto: UpdateCatDto) {
-    return `This action updates a #${id} cat`;
+  create(dto: CreateCatDto): Cat {
+  const cats: Cat[] = this.readAll();
+  const nextId = cats.length ? Math.max(...cats.map((c: Cat) => c.id)) + 1 : 1;
+  const newCat: Cat = { id: nextId, ...dto };
+  cats.push(newCat);
+  this.writeAll(cats);
+  return newCat;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cat`;
-  }*/
+  update(id: number, dto: UpdateCatDto): Cat | null {
+  const cats: Cat[] = this.readAll();
+  const idx = cats.findIndex((c: Cat) => c.id === id);
+  if (idx === -1) return null;
+
+  const updated: Cat = { ...cats[idx], ...dto, id };
+  cats[idx] = updated;
+  this.writeAll(cats);
+  return updated;
+  }
+
+  remove(id: number): { deleted: boolean } {
+  const cats: Cat[] = this.readAll();
+  const before = cats.length;
+  const after = cats.filter((c: Cat) => c.id !== id);
+  this.writeAll(after);
+  return { deleted: after.length < before };
+  }
 }
