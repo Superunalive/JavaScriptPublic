@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Барсик",
+    "status": "available",
+    "age": 2,
+    "image": "images/cat1.jpeg",
+    "color": "black",
+    "weight": 4.2,
+    "description": "Дружелюбный и игривый кот.",
+    "statusText": "Доступна для усыновления",
+    "character": "Очень игривая...",
+    "health": "Здорова...",
+    "story": "История..."
+  },
+  {
+    "id": 2,
+    "name": "Мурка",
+    "status": "adopted",
+    "age": 3,
+    "image": "images/cat2.jpeg",
+    "color": "ginger",
+    "weight": 3.8,
+    "description": "Ласковая кошка, любит внимание.",
+    "statusText": "Доступна для усыновления",
+    "character": "Очень игривая...",
+    "health": "Здорова...",
+    "story": "История..."
+  },
+  {
+    "id": 3,
+    "name": "Снежок",
+    "status": "treatment",
+    "age": 1,
+    "image": "images/cat3.jpeg",
+    "color": "white",
+    "weight": 3.0,
+    "description": "Милый игривый котёнок",
+    "statusText": "Доступна для усыновления",
+    "character": "Очень игривая...",
+    "health": "Здорова...",
+    "story": "История..."
+  }
+]
